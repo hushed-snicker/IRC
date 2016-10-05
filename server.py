@@ -1,5 +1,5 @@
+#!/usr/bin/env python
 """
-
 Name: IRC server
 Purpose: Serves as a common formal platform as a means of communication 
 Author: Gnaneshwar Reddy
@@ -365,7 +365,7 @@ if __name__ == "__main__":
                         
                     except:
                         
-                        cr_obj.broadcast(sock, "Client %s is offline"  %name )
+                        cr_obj.broadcast(sock, "Client %s is offline/n"  %name )
                         #print "Client %s is offline" % name 
                         cr_obj.removeClient(sock) # !!!!!!!
                         
