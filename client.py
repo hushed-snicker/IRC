@@ -8,7 +8,7 @@ from time import sleep
 
 defHost = 'localhost'	#default host for -d
 defPort = 9395		#default port for -d
-nick = ''		#default nick used
+nick = 'test'		#default nick used
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(10)
 
@@ -18,7 +18,7 @@ s.settimeout(10)
 # ToDo #
 ########
 #'''
-#Fix no prompt
+#___Compliance
 #'''
 
 #'''
@@ -26,7 +26,7 @@ s.settimeout(10)
 #	Return Value: None
 #'''
 def prompt_nick():
-	print('prompt_nick()')
+#	print('prompt_nick()')
 
 	global nick
 
@@ -42,11 +42,11 @@ def prompt_nick():
 	Retrun Type: String
 '''
 def prompt() :		#prompts for input. Returns input as string
-	print('prompt()')
+#	print('prompt()')
 
 	global nick
 
-	msg = raw_input('%s>') % nick
+	msg = raw_input(nick + '> ')
 	return msg
 
 '''
@@ -54,7 +54,7 @@ def prompt() :		#prompts for input. Returns input as string
 	Return Value: None
 '''
 def connect():
-	print('connect()')
+#	print('connect()')
 
 	global s
 
@@ -71,30 +71,32 @@ def connect():
 	Return Value: none
 '''
 def loop():
-	print('loop()')
+#	print('loop()')
 
 	global s
 
 	while 1:
-		print('while 1:')
+#		print('while 1:')
 		socket_list = [sys.stdin, s]
 
 		#Get the list sockets which are readable
-		read_sockets, write_sockets, error_sockets = select.select(socket_list, [], [])
+#		print('socket list get')
+		msg = prompt()
+		read_sockets, write_sockets, error_sockets = socket_list , [], []
 
 		for sock in read_sockets:
+#			print('start for loop')
 			#incoming message from remote server
 			if sock == s:
-				print('Check for message')
+#				print('Check for message')
 				data = sock.recv(4096)
 
 				if data:
-					sys.stdout.write(data)
+					print(data)
 			#user entered a message
 			else:
-				print('Prompt for message')
-				msg = prompt()
-				print('Message is : %s') % msg
+#				print('Send message')
+#				print('Message is : %s') % msg
 				s.send(msg)
 
 #main function
